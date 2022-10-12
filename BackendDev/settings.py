@@ -86,7 +86,10 @@ WSGI_APPLICATION = 'BackendDev.wsgi.application'
 # 1: python manage.py migrate --database=master
 # 2: python manage.py migrate --database=content
 DATABASES = {
-    'default': {},
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'databases' / 'master.sqlite3',
+    },
     'master' : {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'databases' / 'master.sqlite3',
