@@ -1,6 +1,7 @@
 from rest_framework import serializers
 
 from .models import (
+    Events,
     HighImpactExperiences,
     Departments,
     Faculty,
@@ -23,6 +24,12 @@ class HighImpactExperiencesSerializer(serializers.ModelSerializer):
             "Senior_desc",
             "creation_date"
         ]
+
+class EventsSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Events
+        fields = '__all__'
 
 class DepartmentsSerializer(serializers.ModelSerializer):
 

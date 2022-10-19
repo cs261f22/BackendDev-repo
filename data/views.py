@@ -1,8 +1,8 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 from data.serializers import HighImpactExperiencesSerializer, DepartmentsSerializer, FacultySerializer
-from data.serializers import CoursesSerializer, MajorsSerializer, MinorsSerializer, StudentsSerializer
-from data.models import Courses, Departments, Faculty, HighImpactExperiences, Majors, Minors, Students
+from data.serializers import CoursesSerializer, MajorsSerializer, MinorsSerializer, StudentsSerializer, EventsSerializer
+from data.models import Courses, Departments, Faculty, HighImpactExperiences, Majors, Minors, Students, Events
 from rest_framework import viewsets, permissions
 
 def api(request):
@@ -11,6 +11,11 @@ def api(request):
 class HighImpactExperiencesViewSet(viewsets.ModelViewSet):
     queryset = HighImpactExperiences.objects.all()
     serializer_class = HighImpactExperiencesSerializer
+    permission_classes = [permissions.AllowAny]
+
+class EventsViewSet(viewsets.ModelViewSet):
+    queryset = Events.objects.all()
+    serializer_class = EventsSerializer
     permission_classes = [permissions.AllowAny]
 
 class DepartmentsViewSet(viewsets.ModelViewSet):

@@ -27,6 +27,7 @@ router.register(r'Courses', data_views.CoursesViewSet) #access: localhost:8000/a
 router.register(r'Majors', data_views.MajorsViewSet) #access: localhost:8000/api/Majors
 router.register(r'Minors', data_views.MinorsViewSet) #access: localhost:8000/api/Minors
 router.register(r'Students', data_views.StudentsViewSet) #access: localhost:8000/api/Students
+router.register(r'Events', data_views.EventsViewSet) #access: localhost:8000/api/Events
 
 urlpatterns = [
     path('admin/', admin.site.urls), #access: localhost:8000/admin/

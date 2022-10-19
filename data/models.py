@@ -15,18 +15,18 @@ class HighImpactExperiences(models.Model):
 
 
 class Events(models.Model):
-    id = models.CharField(max_length=7, primary_key=True)
+    id = models.CharField(max_length=7, primary_key=True) # can get this from the url
     name = models.CharField(max_length=50)
-    event_time_start = models.DateTimeField()
-    event_time_end = models.DateTimeField()
+    start_time = models.DateTimeField()
+    end_time = models.DateTimeField()
     creation_time = models.DateTimeField()
     modified_time = models.DateTimeField()
     url = models.CharField(max_length=100)
     location = models.CharField(max_length=100)
-    categories = models.CharField(max_length=100)
+    categories = models.CharField(max_length=100) # event_type and event_tags
     organizer = models.CharField(max_length=50)
-    summary = models.charfield(max_length=50)
-    description = models.charfield(max_length=1000)
+    summary = models.CharField(max_length=50)
+    description = models.CharField(max_length=1000)
 
 
 class Departments(models.Model):
