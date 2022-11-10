@@ -5,6 +5,8 @@ from data.serializers import StudentSerializer, ProfessorSerializer, AdminAssist
 from data.serializers import CourseSerializer, HighImpactExperienceSerializer, EventSerializer
 from data.models import Department, Major, Minor, Student, Professor, AdminAssistant, Course, HighImpactExperience, Event
 from rest_framework import viewsets, permissions
+from django.shortcuts import get_object_or_404
+from rest_framework.response import Response
 
 def api(request):
     return HttpResponse("API Home Page")
@@ -16,16 +18,72 @@ class DepartmentViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.AllowAny]
 
 
-class MajorViewSet(viewsets.ModelViewSet):
-    queryset = Major.objects.all()
-    serializer_class = MajorSerializer
+class MajorViewSet(viewsets.ViewSet):
+
+    def create(self, request):
+        queryset = Major.objects.all()
+        serializer = MajorSerializer(queryset, many=True)
+        return Response(serializer.data)
+
+    
+    def update(self, request, pk=None):
+        queryset = Major.objects.all()
+        major = get_object_or_404(queryset, pk=pk)
+        serializer = MajorSerializer(queryset, many=True)
+        return Response(serializer.data)
+
+    def delete(self, request, pk=None):
+         queryset = Major.objects.all()
+         major = get_object_or_404(queryset, pk=pk)
+         major.delete()
+
+    
+    def list(self, request):
+        queryset = Major.objects.all()
+        serializer = MajorSerializer(queryset, many=True)
+        return Response(serializer.data)
+
+    def retrieve(self, request, pk=None):
+        queryset = Major.objects.all()
+        major = get_object_or_404(queryset, pk=pk)
+        serializer = MajorSerializer(major)
+        return Response(serializer.data)
+
     permission_classes = [permissions.AllowAny]
 
 
 class MinorViewSet(viewsets.ModelViewSet):
-    queryset = Minor.objects.all()
-    serializer_class = MinorSerializer
-    permission_classes = [permissions.DjangoModelPermissions]
+    
+    def create(self, request):
+        queryset = Minor.objects.all()
+        serializer = MinorSerializer(queryset, many=True)
+        return Response(serializer.data)
+
+    
+    def update(self, request, pk=None):
+        queryset = Minor.objects.all()
+        minor = get_object_or_404(queryset, pk=pk)
+        serializer = MinorSerializer(queryset, many=True)
+        return Response(serializer.data)
+
+    def delete(self, request, pk=None):
+         queryset = Minor.objects.all()
+         minor = get_object_or_404(queryset, pk=pk)
+         minor.delete()
+
+    
+    def list(self, request):
+        queryset = Minor.objects.all()
+        serializer = MinorSerializer(queryset, many=True)
+        return Response(serializer.data)
+
+    def retrieve(self, request, pk=None):
+        queryset = Minor.objects.all()
+        minor = get_object_or_404(queryset, pk=pk)
+        serializer = MinorSerializer(minor)
+        return Response(serializer.data)
+
+    permission_classes = [permissions.AllowAny]
 
 
 class StudentViewSet(viewsets.ModelViewSet):
