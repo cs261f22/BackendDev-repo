@@ -17,6 +17,8 @@ class DepartmentViewSet(viewsets.ViewSet):
     def create(self, request):
         queryset = Department.objects.all()
         serializer = DepartmentSerializer(queryset, many=True)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
         return Response(serializer.data)
 
     
@@ -51,6 +53,8 @@ class MajorViewSet(viewsets.ViewSet):
     def create(self, request):
         queryset = Major.objects.all()
         serializer = MajorSerializer(queryset, many=True)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
         return Response(serializer.data)
 
     
@@ -85,6 +89,8 @@ class MinorViewSet(viewsets.ViewSet):
     def create(self, request):
         queryset = Minor.objects.all()
         serializer = MinorSerializer(queryset, many=True)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
         return Response(serializer.data)
 
     
@@ -119,6 +125,8 @@ class StudentViewSet(viewsets.ViewSet):
     def create(self, request):
         queryset = Student.objects.all()
         serializer = StudentSerializer(queryset, many=True)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
         return Response(serializer.data)
 
     
@@ -153,6 +161,8 @@ class ProfessorViewSet(viewsets.ViewSet):
     def create(self, request):
         queryset = Professor.objects.all()
         serializer = ProfessorSerializer(queryset, many=True)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
         return Response(serializer.data)
 
     
@@ -187,6 +197,8 @@ class AdminAssistantViewSet(viewsets.ViewSet):
     def create(self, request):
         queryset = AdminAssistant.objects.all()
         serializer = AdminAssistantSerializer(queryset, many=True)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
         return Response(serializer.data)
 
     
@@ -221,6 +233,8 @@ class CourseViewSet(viewsets.ViewSet):
     def create(self, request):
         queryset = Course.objects.all()
         serializer = CourseSerializer(queryset, many=True)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
         return Response(serializer.data)
 
     
@@ -255,6 +269,8 @@ class HighImpactExperienceViewSet(viewsets.ViewSet):
     def create(self, request):
         queryset = HighImpactExperience.objects.all()
         serializer = HighImpactExperienceSerializer(queryset, many=True)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
         return Response(serializer.data)
 
     
@@ -289,6 +305,8 @@ class EventViewSet(viewsets.ViewSet):
     def create(self, request):
         queryset = Event.objects.all()
         serializer = EventSerializer(queryset, many=True)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
         return Response(serializer.data)
 
     
