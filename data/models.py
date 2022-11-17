@@ -170,6 +170,7 @@ class HighImpactExperience(models.Model):
     Junior_desc = models.CharField(max_length=200)
     Senior_desc = models.CharField(max_length=200)
     creation_date = models.DateTimeField('date created')
+    advisor_email = models.CharField(max_length=200)
     area = models.ForeignKey(
         Department,
         null=True, #DB can store empty field as NULL
