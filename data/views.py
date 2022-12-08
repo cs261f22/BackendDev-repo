@@ -17,6 +17,9 @@ from data.permissions import IsOwner
 
 import sqlite3 
 
+from drf_spectacular.utils import extend_schema, extend_schema_view, OpenApiParameter, OpenApiExample
+from drf_spectacular.types import OpenApiTypes
+
 def tbl_cnts(request):
     con=sqlite3.connect("./databases/db.sqlite3")
     cur = con.cursor()
@@ -39,7 +42,6 @@ def tbl_cnts(request):
         'ut_cnt' : len(user_facing_tables)
         }
     return render(request, 'data/tblcnts.html', metrics)
-
 
 class StudentViewSet(viewsets.ModelViewSet):
     queryset = Student.objects.all()
@@ -77,6 +79,10 @@ class StudentViewSet(viewsets.ModelViewSet):
         
         return [permission() for permission in self.permission_classes] 
     
+    @extend_schema(
+        summary="Deletes a Student",
+        description="Deletes a Student table from the database."
+    )
     def destroy(self, request, pk=None):
         if pk is not None:
             try:

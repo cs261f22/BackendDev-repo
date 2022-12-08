@@ -3,6 +3,10 @@ from rest_framework import serializers
 from django.contrib.auth.models import User, Group #, Permission
 from django.contrib.auth.hashers import make_password
 
+from drf_spectacular.utils import extend_schema, extend_schema_serializer, OpenApiParameter, OpenApiExample
+from drf_spectacular.types import OpenApiTypes
+
+
 from .models import (
     Department,
     Major,
@@ -132,7 +136,8 @@ class ProfileSerializer(serializers.ModelSerializer):
         extra_kwargs = {"role": {'read_only':True}}
 
 
-
+@extend_schema_serializer(
+)
 class StudentSerializer(serializers.ModelSerializer):
     prof = ProfileSerializer(many=False)
     major = serializers.SlugRelatedField(many=True, slug_field='id', queryset=Major.objects.all(), allow_null=True, default=None)
@@ -149,6 +154,10 @@ class StudentSerializer(serializers.ModelSerializer):
         ]
         extra_kwargs = {"id": {'read_only':True}}
     
+    @extend_schema(
+        summary="Creates a Student",
+        description="Creates a Student table in the database."
+    )
     def create(self, validated_data):
         stud_group, created = Group.objects.get_or_create(name="Student")
         print(f"CREATE DATA\n{validated_data}")
@@ -176,6 +185,10 @@ class StudentSerializer(serializers.ModelSerializer):
 
         return s
     
+    @extend_schema(
+        summary="Updates a Student",
+        description="Updates a Student table in the database"
+    )
     def update(self, instance, validated_data):
         print(f"UPDATE DATA\n{validated_data}")
         prof_data = {}
